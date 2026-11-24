@@ -17,6 +17,13 @@
             return res.status(400).json({ message: "User already exists"})
            }
 
+           //check with username as well
+           const existingUsername = await User.findOne({username});
+
+           if (existingUsername) {
+            return res.status(400).json({ message: "Username already exists"})
+           }
+
            // Create new user 
 
            const newUser = await User.create({
@@ -36,6 +43,8 @@
      }
    };
 
-   export {
+   /**export {
       getUsers
-   }; 
+   }; */
+
+   export const getUser = getUsers;  // Export the getUsers function as getUser
